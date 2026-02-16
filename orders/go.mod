@@ -1,4 +1,4 @@
-module github.com/jeffvincent/kindling/examples/sample-app
+module github.com/jeffvincent/kindling/examples/microservices/orders
 
 go 1.20
 

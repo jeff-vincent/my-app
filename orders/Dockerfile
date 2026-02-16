@@ -5,13 +5,13 @@ WORKDIR /app
 COPY go.mod go.sum* ./
 RUN go mod download 2>/dev/null || true
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o /sample-app .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /orders .
 
 # ── Runtime stage ────────────────────────────────────────────────
 FROM alpine:3.19
 
 RUN apk add --no-cache ca-certificates
-COPY --from=builder /sample-app /usr/local/bin/sample-app
+COPY --from=builder /orders /usr/local/bin/orders
 
-EXPOSE 8080
-ENTRYPOINT ["sample-app"]
+EXPOSE 8081
+ENTRYPOINT ["orders"]
